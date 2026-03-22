@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Список аниме</title>
+	</head>
+	<body>
+		<div class="links">
+			<p>
+				<b>Список аниме с рейтингами</b>
+			</p>
+			<p><a href="/src/index.html">Главная - Аниме мир</a></p>	
+		</div>
+		<hr>
+		<div class="filters">
+			<details>
+				<summary>График</summary>
+				<p><b>Значение по оси OX:</b></p>
+				<form>
+					<label> <input type="radio" id="type" name="quest_1" value="1_1">Тип </label><br>
+   				<label> <input type="radio" id="year" name="quest_1" value="1_2">Год выхода </label><br>
+   				<label> <input type="radio" id="studio" name="quest_1" value="1_3">Студия </label>
+				</form>
+				<p><b>Значение по оси OY:</b></p>
+				<form>
+					<label> <input type="checkbox" id="max_rating" name="quest_2" value="2_1">Максимальный рейтинг </label><br>
+   				<label> <input type="checkbox" id="min_rating" name="quest_2" value="2_2">Минимальный рейтинг </label><br>
+   				<label> <input type="checkbox" id="episodes_count" name="quest_2" value="2_3">Количество эпизодов </label>
+				</form>
+				<p><input type="button" id="build" value="Построить"></p>
+				<p>Здесь будет график</p>
+			</details>
+			<details>
+				<summary>Фильтр</summary>
+				<form>
+					<p>Название: <input type="text" name="title" id="title"></p>
+					<p>Тип: 
+						<select id="type_filter">
+							<option value="">Все</option>
+							<option value="Сериал">Сериал</option>
+							<option value="Фильм">Фильм</option>
+							<option value="OVA">OVA</option>
+							<option value="ONA">ONA</option>
+						</select>
+					</p>
+					<p>Жанр: <input type="text" name="genre" id="genre"></p>
+					<p>Студия: <input type="text" name="studio" id="studio"></p>
+					<p>Режиссёр: <input type="text" name="director" id="director"></p>
+					<p>Количество эпизодов: от <input type="text" name="episodes_min" id="episodes_min"> до <input type="text" name="episodes_max" id="episodes_max"></p>
+					<p>Длительность эпизода (мин): от <input type="text" name="duration_min" id="duration_min"> до <input type="text" name="duration_max" id="duration_max"></p>
+					<p>Рейтинг MyAnimeList: от <input type="text" name="rating_min" id="rating_min"> до <input type="text" name="rating_max" id="rating_max"></p>
+					<p>Возрастное ограничение: 
+						<select id="age_rating">
+							<option value="">Все</option>
+							<option value="0+">0+</option>
+							<option value="6+">6+</option>
+							<option value="12+">12+</option>
+							<option value="16+">16+</option>
+							<option value="18+">18+</option>
+						</select>
+					</p>
+					<p>Год выхода: от <input type="text" name="year_min" id="year_min"> до <input type="text" name="year_max" id="year_max"></p>
+					<p>Статус: 
+						<select id="status">
+							<option value="">Все</option>
+							<option value="Вышедшее">Вышедшее</option>
+							<option value="Онгоинг">Онгоинг</option>
+							<option value="Анонсировано">Анонсировано</option>
+						</select>
+					</p>
+				</form>
+				<p><input type="button" id="find" value="Найти"></p>
+			</details>
+			<details>
+				<summary>Сортировка</summary>
+				<p>
+				<label for="task_1">
+          Первый уровень:
+          <select id="task_1">
+            <option value="0">Нет</option>
+            <option value="1">Название</option>
+            <option value="2">Тип</option>
+            <option value="3">Год выхода</option>
+						<option value="4">Рейтинг</option>
+						<option value="5">Количество эпизодов</option>
+						<option value="6">Длительность</option>
+						<option value="7">Студия</option>
+						<option value="8">Возрастное ограничение</option>
+          </select>
+        </label>
+				<label> 
+					По убыванию?
+					<input type="checkbox" id="yes_or_no_1" name="quest_2" value="2_1"></label>
+				</p>
+				<p>
+				<label for="task_2">
+          Второй уровень:
+          <select id="task_2">
+            <option value="0">Нет</option>
+            <option value="1">Название</option>
+            <option value="2">Тип</option>
+            <option value="3">Год выхода</option>
+						<option value="4">Рейтинг</option>
+						<option value="5">Количество эпизодов</option>
+						<option value="6">Длительность</option>
+						<option value="7">Студия</option>
+						<option value="8">Возрастное ограничение</option>
+          </select>
+        </label>
+				<label> 
+					По убыванию?
+					<input type="checkbox" id="yes_or_no_2" name="quest_2" value="2_1"></label>
+				</p>
+				<p>
+				<label for="task_3">
+          Третий уровень:
+          <select id="task_3">
+						<option value="0">Нет</option>
+            <option value="1">Название</option>
+            <option value="2">Тип</option>
+            <option value="3">Год выхода</option>
+						<option value="4">Рейтинг</option>
+						<option value="5">Количество эпизодов</option>
+						<option value="6">Длительность</option>
+						<option value="7">Студия</option>
+						<option value="8">Возрастное ограничение</option>
+          </select>
+        </label>
+				<label> 
+					По убыванию?
+					<input type="checkbox" id="yes_or_no_3" name="quest_2" value="2_1"></label>
+				</p>
+				<p><input type="button" id="sort" value="Сортировать"></p>
+			</details>
+		</div>
+		<div class="table">
+			<table border="1">
+				<thead>
+					<tr>
+						<th scope="col">Название</th>
+						<th scope="col">Тип</th>
+						<th scope="col">Год выхода</th>
+						<th scope="col">Эпизоды</th>
+						<th scope="col">Длительность</th>
+						<th scope="col">Студия</th>
+						<th scope="col">Режиссёр</th>
+						<th scope="col">Жанр</th>
+						<th scope="col">Рейтинг MAL</th>
+						<th scope="col">Возрастное ограничение</th>
+						<th scope="col">Статус</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>Атака титанов</td><td>Сериал</td><td>2013</td><td>89</td><td>24 мин</td><td>Wit Studio, MAPPA</td><td>Тэцуро Араки</td><td>Драма, Фэнтези, Экшен</td><td>9.1</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Твоё имя</td><td>Фильм</td><td>2016</td><td>1</td><td>106 мин</td><td>CoMix Wave Films</td><td>Макото Синкай</td><td>Романтика, Драма, Фэнтези</td><td>8.8</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Ковбой Бибоп</td><td>Сериал</td><td>1998</td><td>26</td><td>24 мин</td><td>Sunrise</td><td>Синъитиро Ватанабэ</td><td>Экшен, Приключения, Драма</td><td>8.8</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Унесённые призраками</td><td>Фильм</td><td>2001</td><td>1</td><td>125 мин</td><td>Studio Ghibli</td><td>Хаяо Миядзаки</td><td>Приключения, Драма, Фэнтези</td><td>8.6</td><td>6+</td><td>Вышедшее</td></tr>
+					<tr><td>Стальной алхимик: Братство</td><td>Сериал</td><td>2009</td><td>64</td><td>24 мин</td><td>Bones</td><td>Ясухиро Ириэ</td><td>Приключения, Драма, Фэнтези</td><td>9.1</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Наруто</td><td>Сериал</td><td>2002</td><td>220</td><td>23 мин</td><td>Pierrot</td><td>Хаято Датэ</td><td>Приключения, Комедия, Экшен</td><td>7.9</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Моя геройская академия</td><td>Сериал</td><td>2016</td><td>138</td><td>24 мин</td><td>Bones</td><td>Кэнъити Нагасаки</td><td>Экшен, Комедия, Суперсила</td><td>7.9</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Ван-Пис</td><td>Сериал</td><td>1999</td><td>1100</td><td>24 мин</td><td>Toei Animation</td><td>Коити Маэда</td><td>Приключения, Комедия, Экшен</td><td>8.7</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Ходячий замок</td><td>Фильм</td><td>2004</td><td>1</td><td>119 мин</td><td>Studio Ghibli</td><td>Хаяо Миядзаки</td><td>Приключения, Драма, Фэнтези</td><td>8.2</td><td>6+</td><td>Вышедшее</td></tr>
+					<tr><td>Берсерк</td><td>Сериал</td><td>1997</td><td>25</td><td>23 мин</td><td>OLM</td><td>Наосито Ямамото</td><td>Экшен, Драма, Ужасы</td><td>8.7</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Евангелион</td><td>Сериал</td><td>1995</td><td>26</td><td>24 мин</td><td>Gainax</td><td>Хидэаки Анно</td><td>Драма, Психологическое, Меха</td><td>8.4</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Призрак в доспехах</td><td>Сериал</td><td>2002</td><td>52</td><td>25 мин</td><td>Production I.G</td><td>Кэндзи Камияма</td><td>Экшен, Полиция, Киберпанк</td><td>8.5</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Волейбол!!</td><td>Сериал</td><td>2014</td><td>85</td><td>24 мин</td><td>Production I.G</td><td>Сусуму Мицонака</td><td>Комедия, Драма, Спорт</td><td>8.7</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Академия Адской Пограничной черты</td><td>Сериал</td><td>2023</td><td>13</td><td>23 мин</td><td>Bug Films</td><td>Нобуёси Нагаяма</td><td>Комедия, Сверхъестественное</td><td>8.9</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Обещанный Неверленд</td><td>Сериал</td><td>2019</td><td>23</td><td>23 мин</td><td>CloverWorks</td><td>Мамото Синобу</td><td>Драма, Хоррор, Психологическое</td><td>8.5</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Судьба/Ночь схватки</td><td>Сериал</td><td>2006</td><td>26</td><td>24 мин</td><td>Studio Deen</td><td>Юдзи Ямагути</td><td>Экшен, Фэнтези, Сверхъестественное</td><td>7.5</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Доктор Стоун</td><td>Сериал</td><td>2019</td><td>47</td><td>24 мин</td><td>TMS Entertainment</td><td>Синъя Иноудзэ</td><td>Приключения, Комедия, Научная фантастика</td><td>8.2</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Мастера меча онлайн</td><td>Сериал</td><td>2012</td><td>97</td><td>24 мин</td><td>A-1 Pictures</td><td>Томохико Ито</td><td>Экшен, Приключения, Романтика</td><td>7.2</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Вайолет Эвергарден</td><td>Сериал</td><td>2018</td><td>13</td><td>24 мин</td><td>Kyoto Animation</td><td>Таити Исидатэ</td><td>Драма, Фэнтези, Сёдзё</td><td>8.7</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Девушка-загадка</td><td>Сериал</td><td>2006</td><td>25</td><td>24 мин</td><td>Kyoto Animation</td><td>Ясухиро Такамото</td><td>Комедия, Драма, Мистерия</td><td>8.4</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Реинкарнация безработного</td><td>Сериал</td><td>2021</td><td>38</td><td>23 мин</td><td>Studio Bind</td><td>Хироси Хара</td><td>Драма, Фэнтези, Приключения</td><td>8.3</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Клинок, рассекающий демонов</td><td>Сериал</td><td>2019</td><td>55</td><td>23 мин</td><td>ufotable</td><td>Харуо Сотодзаки</td><td>Экшен, Драма, Сверхъестественное</td><td>8.7</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Человек-бензопила</td><td>Сериал</td><td>2022</td><td>12</td><td>24 мин</td><td>MAPPA</td><td>Рю Накаяма</td><td>Экшен, Драма, Сверхъестественное</td><td>8.6</td><td>18+</td><td>Онгоинг</td></tr>
+					<tr><td>Сага о Винланде</td><td>Сериал</td><td>2019</td><td>48</td><td>24 мин</td><td>Wit Studio</td><td>Сюхэй Ябута</td><td>Драма, Исторический, Приключения</td><td>8.8</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Токийские мстители</td><td>Сериал</td><td>2021</td><td>37</td><td>24 мин</td><td>Liden Films</td><td>Коити Хатсоми</td><td>Экшен, Драма, Психологическое</td><td>7.5</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Блич: Тысячелетняя кровавая война</td><td>Сериал</td><td>2022</td><td>26</td><td>24 мин</td><td>Pierrot</td><td>Томохиса Тагути</td><td>Экшен, Приключения, Сверхъестественное</td><td>9.0</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>О моём перерождении в слизь</td><td>Сериал</td><td>2018</td><td>48</td><td>23 мин</td><td>8bit</td><td>Ясухито Кикути</td><td>Комедия, Фэнтези, Приключения</td><td>8.1</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Восхождение героя щита</td><td>Сериал</td><td>2019</td><td>50</td><td>23 мин</td><td>Kinema Citrus</td><td>Такао Або</td><td>Драма, Фэнтези, Приключения</td><td>8.1</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Оверлорд</td><td>Сериал</td><td>2015</td><td>52</td><td>24 мин</td><td>Madhouse</td><td>Наоюки Ито</td><td>Экшен, Фэнтези, Драма</td><td>8.0</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Король-шаман</td><td>Сериал</td><td>2021</td><td>52</td><td>23 мин</td><td>Bridge</td><td>Ёсукэ Ямамото</td><td>Экшен, Комедия, Сверхъестественное</td><td>7.8</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Токийский гуль</td><td>Сериал</td><td>2014</td><td>48</td><td>24 мин</td><td>Pierrot</td><td>Сюхэй Морита</td><td>Экшен, Драма, Ужасы</td><td>7.8</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Парад смерти</td><td>Сериал</td><td>2015</td><td>12</td><td>23 мин</td><td>Madhouse</td><td>Юдзуру Татикава</td><td>Драма, Психологическое, Триллер</td><td>8.3</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Киберпанк: Бегущие по краю</td><td>Сериал</td><td>2022</td><td>10</td><td>25 мин</td><td>Studio Trigger</td><td>Хироюки Имаиси</td><td>Экшен, Драма, Киберпанк</td><td>8.5</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Магическая битва</td><td>Сериал</td><td>2020</td><td>47</td><td>23 мин</td><td>MAPPA</td><td>Сун Ху Пак</td><td>Экшен, Драма, Сверхъестественное</td><td>8.6</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Хоримия</td><td>Сериал</td><td>2021</td><td>13</td><td>23 мин</td><td>CloverWorks</td><td>Масаси Исихама</td><td>Комедия, Романтика, Повседневность</td><td>8.2</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Компьютерная школа Широбако</td><td>Сериал</td><td>2014</td><td>24</td><td>24 мин</td><td>P.A. Works</td><td>Цутому Мидзусима</td><td>Комедия, Драма, Повседневность</td><td>8.0</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Невероятные приключения ДжоДжо</td><td>Сериал</td><td>2012</td><td>190</td><td>24 мин</td><td>David Production</td><td>Наоки Татэ</td><td>Экшен, Приключения, Сверхъестественное</td><td>8.4</td><td>16+</td><td>Онгоинг</td></tr>
+					<tr><td>Код Гиас</td><td>Сериал</td><td>2006</td><td>50</td><td>24 мин</td><td>Sunrise</td><td>Горо Танигути</td><td>Экшен, Драма, Меха</td><td>8.7</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Стальной алхимик</td><td>Сериал</td><td>2003</td><td>51</td><td>24 мин</td><td>Bones</td><td>Сэйдзи Мидзусима</td><td>Приключения, Драма, Фэнтези</td><td>8.2</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Семь смертных грехов</td><td>Сериал</td><td>2014</td><td>100</td><td>24 мин</td><td>A-1 Pictures</td><td>Тэнсай Окамура</td><td>Экшен, Приключения, Фэнтези</td><td>7.6</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Блич</td><td>Сериал</td><td>2004</td><td>366</td><td>24 мин</td><td>Pierrot</td><td>Нориюки Абэ</td><td>Экшен, Приключения, Сверхъестественное</td><td>7.9</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Хеталия</td><td>Сериал</td><td>2009</td><td>52</td><td>5 мин</td><td>Studio Deen</td><td>Боб Сирахата</td><td>Комедия, Исторический, Пародия</td><td>7.3</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Люпен III</td><td>Сериал</td><td>1971</td><td>300+</td><td>24 мин</td><td>Tokyo Movie Shinsha</td><td>Хаяо Миядзаки</td><td>Экшен, Комедия, Детектив</td><td>8.1</td><td>12+</td><td>Онгоинг</td></tr>
+					<tr><td>Принцесса Мононоке</td><td>Фильм</td><td>1997</td><td>1</td><td>134 мин</td><td>Studio Ghibli</td><td>Хаяо Миядзаки</td><td>Приключения, Драма, Фэнтези</td><td>8.7</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Хеллсинг</td><td>OVA</td><td>2006</td><td>10</td><td>50 мин</td><td>Satelight</td><td>Томокадзу Токоро</td><td>Экшен, Ужасы, Сверхъестественное</td><td>8.3</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Эльфийская песнь</td><td>OVA</td><td>2004</td><td>13</td><td>25 мин</td><td>Arms</td><td>Мамору Канбэ</td><td>Драма, Психологическое, Романтика</td><td>7.8</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Крутой учитель Онидзука</td><td>Сериал</td><td>1999</td><td>43</td><td>23 мин</td><td>Pierrot</td><td>Нориюки Абэ</td><td>Комедия, Драма, Повседневность</td><td>8.7</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Гуррен-Лаганн</td><td>Сериал</td><td>2007</td><td>27</td><td>24 мин</td><td>Gainax</td><td>Хироюки Имаиси</td><td>Экшен, Комедия, Меха</td><td>8.7</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Корпуция</td><td>Сериал</td><td>2012</td><td>22</td><td>24 мин</td><td>AIC</td><td>Цутому Мидзусима</td><td>Комедия, Научная фантастика, Повседневность</td><td>7.5</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Ангельские ритмы</td><td>Сериал</td><td>2010</td><td>13</td><td>24 мин</td><td>P.A. Works</td><td>Сэйдзи Киси</td><td>Драма, Фэнтези, Сверхъестественное</td><td>8.1</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Кланнад</td><td>Сериал</td><td>2007</td><td>47</td><td>24 мин</td><td>Kyoto Animation</td><td>Тацуя Исихара</td><td>Драма, Романтика, Повседневность</td><td>8.7</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Стальная тревога!</td><td>Сериал</td><td>2002</td><td>50</td><td>24 мин</td><td>Gonzo</td><td>Коити Тигира</td><td>Комедия, Меха, Романтика</td><td>7.9</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Рыцари магии</td><td>Сериал</td><td>1994</td><td>29</td><td>23 мин</td><td>Studio Deen</td><td>Хироси Ватанабэ</td><td>Приключения, Фэнтези, Романтика</td><td>7.8</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Сказание о героях Галактики</td><td>Сериал</td><td>1988</td><td>110</td><td>25 мин</td><td>Kitty Films</td><td>Нобору Исигуро</td><td>Драма, Научная фантастика, Космос</td><td>9.1</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Монстр</td><td>Сериал</td><td>2004</td><td>74</td><td>24 мин</td><td>Madhouse</td><td>Масаюки Кодзима</td><td>Драма, Психологическое, Триллер</td><td>8.8</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Самурай Чамплу</td><td>Сериал</td><td>2004</td><td>26</td><td>24 мин</td><td>Manglobe</td><td>Синъитиро Ватанабэ</td><td>Экшен, Комедия, Приключения</td><td>8.7</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Триган</td><td>Сериал</td><td>1998</td><td>26</td><td>24 мин</td><td>Madhouse</td><td>Сатоси Нисимура</td><td>Экшен, Драма, Вестерн</td><td>8.5</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Хелсинг</td><td>Сериал</td><td>2001</td><td>13</td><td>23 мин</td><td>Gonzo</td><td>Уэда Ясунори</td><td>Экшен, Ужасы, Сверхъестественное</td><td>7.4</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Баккано!</td><td>Сериал</td><td>2007</td><td>16</td><td>24 мин</td><td>Brain's Base</td><td>Такахиро Омори</td><td>Экшен, Комедия, Сверхъестественное</td><td>8.4</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Дюрарара!!</td><td>Сериал</td><td>2010</td><td>60</td><td>24 мин</td><td>Brain's Base</td><td>Такахиро Омори</td><td>Экшен, Загадочное, Сверхъестественное</td><td>8.2</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Беспокойный Харахи Судзумии</td><td>Сериал</td><td>2006</td><td>28</td><td>24 мин</td><td>Kyoto Animation</td><td>Тацуя Исихара</td><td>Комедия, Драма, Сверхъестественное</td><td>8.4</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Меланхолия Харухи Судзумии</td><td>Сериал</td><td>2006</td><td>14</td><td>24 мин</td><td>Kyoto Animation</td><td>Тацуя Исихара</td><td>Комедия, Загадочное, Повседневность</td><td>8.0</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Паприка</td><td>Фильм</td><td>2006</td><td>1</td><td>90 мин</td><td>Madhouse</td><td>Сатоси Кон</td><td>Драма, Психологическое, Научная фантастика</td><td>8.0</td><td>16+</td><td>Вышедшее</td></tr>
+					<tr><td>Миллениум Актриса</td><td>Фильм</td><td>2001</td><td>1</td><td>87 мин</td><td>Madhouse</td><td>Сатоси Кон</td><td>Драма, Фэнтези, Романтика</td><td>8.2</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Токийский Бог Отец</td><td>Фильм</td><td>2003</td><td>1</td><td>92 мин</td><td>Madhouse</td><td>Сатоси Кон</td><td>Драма, Фэнтези, Сверхъестественное</td><td>8.3</td><td>12+</td><td>Вышедшее</td></tr>
+					<tr><td>Идеальный голубой</td><td>Фильм</td><td>1997</td><td>1</td><td>81 мин</td><td>Madhouse</td><td>Сатоси Кон</td><td>Драма, Психологическое, Триллер</td><td>7.9</td><td>18+</td><td>Вышедшее</td></tr>
+					<tr><td>Ветер крепчает</td><td>Фильм</td><td>2013</td><td>1</td><td>126 мин</td><td>Studio Ghibli</td><td>Хаяо Миядзаки</td><td>Драма, Исторический, Романтика</td><td>7.8</td><td>12+</td><td>Вышедшее</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
