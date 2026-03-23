@@ -45,6 +45,13 @@ const sortTable = (idTable, formData) => {
 
     const headers = Object.keys(animeData[0]);
 
+    const numericFields = [
+        "Год выхода",
+        "Эпизоды",
+        "Длительность (мин)",
+        "Рейтинг MAL"
+    ];
+
     tableData.sort((first, second) => {
         for (const { column, direction } of sortArr) {
             const key = headers[column];
@@ -53,8 +60,10 @@ const sortTable = (idTable, formData) => {
 
             let comparison = 0;
 
-            if (typeof firstVal === "number" && typeof secondVal === "number") {
-                comparison = firstVal - secondVal;
+            if (numericFields.includes(key)) {
+                comparison = Number(firstVal) - Number(secondVal);
+            } else if (key === "Возрастное ограничение") {
+                comparison = parseInt(firstVal) - parseInt(secondVal);
             } else {
                 comparison = String(firstVal).localeCompare(String(secondVal), "ru");
             }
