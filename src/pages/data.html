@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Список аниме</title>
+    <script src="/src/js/data.js"></script>
+    <script src="/src/js/table.js"></script>
+    <script src="/src/js/filter.js"></script>
+    <script src="/src/js/sort.js"></script>
+    <script src="/src/js/main.js"></script>
+</head>
+<body>
+    <div class="links">
+        <p><b>Список аниме с рейтингами</b></p>
+        <p><a href="/src/index.html">Главная - Аниме мир</a></p>
+    </div>
+    <hr>
+
+    <div class="filters">
+        <details>
+            <summary>График</summary>
+            <p><b>Значение по оси OX:</b></p>
+            <form>
+                <label><input type="radio" id="chartType" name="chart_x"> Тип</label><br>
+                <label><input type="radio" id="chartYear" name="chart_x"> Год выхода</label><br>
+                <label><input type="radio" id="chartStudio" name="chart_x"> Студия</label>
+            </form>
+            <p><b>Значение по оси OY:</b></p>
+            <form>
+                <label><input type="checkbox" id="chartMaxRating"> Максимальный рейтинг</label><br>
+                <label><input type="checkbox" id="chartMinRating"> Минимальный рейтинг</label><br>
+                <label><input type="checkbox" id="chartEpisodesCount"> Количество эпизодов</label>
+            </form>
+            <p><input type="button" id="build" value="Построить"></p>
+            <p>Здесь будет график</p>
+        </details>
+
+        <details open>
+            <summary>Фильтр</summary>
+            <form id="filter">
+                <p>Название: <input type="text" id="title"></p>
+                <p>Тип:
+                    <select id="type">
+                        <option value="">Все</option>
+                        <option value="Сериал">Сериал</option>
+                        <option value="Фильм">Фильм</option>
+                        <option value="OVA">OVA</option>
+                        <option value="ONA">ONA</option>
+                    </select>
+                </p>
+                <p>Жанр: <input type="text" id="genre"></p>
+                <p>Студия: <input type="text" id="studio"></p>
+                <p>Режиссёр: <input type="text" id="director"></p>
+                <p>Количество эпизодов: от <input type="number" id="episodesFrom"> до <input type="number" id="episodesTo"></p>
+                <p>Длительность эпизода (мин): от <input type="number" id="durationFrom"> до <input type="number" id="durationTo"></p>
+                <p>Рейтинг MyAnimeList: от <input type="number" step="0.1" id="ratingFrom"> до <input type="number" step="0.1" id="ratingTo"></p>
+                <p>Возрастное ограничение:
+                    <select id="ageRating">
+                        <option value="">Все</option>
+                        <option value="0+">0+</option>
+                        <option value="6+">6+</option>
+                        <option value="12+">12+</option>
+                        <option value="16+">16+</option>
+                        <option value="18+">18+</option>
+                    </select>
+                </p>
+                <p>Год выхода: от <input type="number" id="yearFrom"> до <input type="number" id="yearTo"></p>
+                <p>Статус:
+                    <select id="status">
+                        <option value="">Все</option>
+                        <option value="Вышедшее">Вышедшее</option>
+                        <option value="Онгоинг">Онгоинг</option>
+                        <option value="Анонсировано">Анонсировано</option>
+                    </select>
+                </p>
+                <input type="button" id="findButton" value="Найти">
+                <input type="button" id="clearFilterButton" value="Очистить фильтры">
+            </form>
+        </details>
+
+        <details open>
+            <summary>Сортировка</summary>
+            <form id="sort">
+                <p>
+                    <label for="fieldsFirst">Первый уровень:</label>
+                    <select id="fieldsFirst"></select>
+                    По убыванию?
+                    <input type="checkbox" id="fieldsFirstDesc">
+                </p>
+                <p>
+                    <label for="fieldsSecond">Второй уровень:</label>
+                    <select id="fieldsSecond"></select>
+                    По убыванию?
+                    <input type="checkbox" id="fieldsSecondDesc">
+                </p>
+                <p>
+                    <label for="fieldsThird">Третий уровень:</label>
+                    <select id="fieldsThird"></select>
+                    По убыванию?
+                    <input type="checkbox" id="fieldsThirdDesc">
+                </p>
+                <input type="button" id="sortButton" value="Сортировать">
+                <input type="button" id="resetSortButton" value="Сбросить сортировку">
+            </form>
+        </details>
+    </div>
+
+    <div class="table">
+        <table border="1" id="list"></table>
+    </div>
+</body>
+</html>
