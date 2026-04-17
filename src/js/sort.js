@@ -20,31 +20,14 @@ const createSortArr = (data) => {
     return sortArr;
 };
 
-const resetSort = (idTable, sortForm) => {
-    sortForm.reset();
-    setSortSelects(animeData[0], sortForm);
-
-    const filterForm = document.getElementById("filter");
-    const filteredData = getFilteredData(animeData, filterForm);
-
-    clearTable(idTable);
-    createTable(filteredData, idTable);
-};
-
-const sortTable = (idTable, formData) => {
+const getSortedData = (data, formData) => {
     const sortArr = createSortArr(formData);
-    const filterForm = document.getElementById("filter");
-
-    let tableData = getFilteredData(animeData, filterForm);
 
     if (sortArr.length === 0) {
-        clearTable(idTable);
-        createTable(tableData, idTable);
-        return;
+        return [...data];
     }
 
     const headers = Object.keys(animeData[0]);
-
     const numericFields = [
         "Год выхода",
         "Эпизоды",
@@ -52,7 +35,9 @@ const sortTable = (idTable, formData) => {
         "Рейтинг MAL"
     ];
 
-    tableData.sort((first, second) => {
+    const sortedData = [...data];
+
+    sortedData.sort((first, second) => {
         for (const { column, direction } of sortArr) {
             const key = headers[column];
             const firstVal = first[key];
@@ -75,6 +60,24 @@ const sortTable = (idTable, formData) => {
 
         return 0;
     });
+
+    return sortedData;
+};
+
+const resetSort = (idTable, sortForm) => {
+    sortForm.reset();
+    setSortSelects(animeData[0], sortForm);
+
+    const filterForm = document.getElementById("filter");
+    const filteredData = getFilteredData(animeData, filterForm);
+
+    clearTable(idTable);
+    createTable(filteredData, idTable);
+};
+
+const sortTable = (idTable, formData) => {
+    const filterForm = document.getElementById("filter");
+    const tableData = getSortedData(getFilteredData(animeData, filterForm), formData);
 
     clearTable(idTable);
     createTable(tableData, idTable);

@@ -3,37 +3,83 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/table.js"></script>
+    <script src="../js/filter.js"></script>
+    <script src="../js/sort.js"></script>
+    <script src="../js/chart.js"></script>
+    <script src="../js/main.js"></script>
     <title>Список аниме</title>
-    <script src="/src/js/data.js"></script>
-    <script src="/src/js/table.js"></script>
-    <script src="/src/js/filter.js"></script>
-    <script src="/src/js/sort.js"></script>
-    <script src="/src/js/main.js"></script>
 </head>
 <body>
     <div class="links">
         <p><b>Список аниме с рейтингами</b></p>
-        <p><a href="/src/index.html">Главная - Аниме мир</a></p>
+        <p><a href="../index.html">Главная - Аниме мир</a></p>
     </div>
     <hr>
 
     <div class="filters">
         <details>
             <summary>График</summary>
-            <p><b>Значение по оси OX:</b></p>
-            <form>
-                <label><input type="radio" id="chartType" name="chart_x"> Тип</label><br>
-                <label><input type="radio" id="chartYear" name="chart_x"> Год выхода</label><br>
-                <label><input type="radio" id="chartStudio" name="chart_x"> Студия</label>
+            <form id="chart-form">
+                <p>Значение по оси OX</p>
+                <label>
+                    <input type="radio" name="group-field" value="Тип">
+                    Тип
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Год выхода" checked>
+                    Год выхода
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Студия">
+                    Студия
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Эпизоды">
+                    Эпизоды
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Длительность (мин)">
+                    Длительность (мин)
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Рейтинг MAL">
+                    Рейтинг MAL
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Возрастное ограничение">
+                    Возрастное ограничение
+                </label><br>
+                <label>
+                    <input type="radio" name="group-field" value="Статус">
+                    Статус
+                </label>
+
+                <p id="chart-y-title">Значение по оси OY</p>
+                <label>
+                    <input id="show-max" type="checkbox" checked>
+                    Максимальный рейтинг
+                </label><br>
+                <label>
+                    <input id="show-min" type="checkbox" checked>
+                    Минимальный рейтинг
+                </label>
+
+                <p>
+                    <label for="chart-type">Тип графика</label>
+                    <select id="chart-type">
+                        <option value="bar" selected>Гистограмма</option>
+                        <option value="dot">Точечная диаграмма</option>
+                        <option value="line">Линейный график</option>
+                    </select>
+                </p>
+
+                <p><button id="build-chart" type="submit">Построить</button></p>
             </form>
-            <p><b>Значение по оси OY:</b></p>
-            <form>
-                <label><input type="checkbox" id="chartMaxRating"> Максимальный рейтинг</label><br>
-                <label><input type="checkbox" id="chartMinRating"> Минимальный рейтинг</label><br>
-                <label><input type="checkbox" id="chartEpisodesCount"> Количество эпизодов</label>
-            </form>
-            <p><input type="button" id="build" value="Построить"></p>
-            <p>Здесь будет график</p>
+            <svg></svg>
         </details>
 
         <details close>
@@ -104,6 +150,10 @@
                 <input type="button" id="resetSortButton" value="Сбросить сортировку">
             </form>
         </details>
+    </div>
+
+    <div class="table-controls">
+        <button id="toggle-table" type="button">Скрыть таблицу</button>
     </div>
 
     <div class="table">

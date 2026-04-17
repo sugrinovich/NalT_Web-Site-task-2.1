@@ -6,68 +6,56 @@ const formatCellValue = (key, value) => {
     return value;
 };
 
-const createTable = (data, idTable) => {
-    const table = document.getElementById(idTable);
-    if (!table) return;
-
-    const header = data.length > 0
+// Создание таблицы по образцу из лабораторной, но с поддержкой текущих данных.
+const showTable = (idTable, data) => {
+    const table = d3.select(`#${idTable}`);
+    const headers = data.length > 0
         ? Object.keys(data[0])
         : (typeof animeData !== "undefined" && animeData.length > 0 ? Object.keys(animeData[0]) : []);
 
-    if (header.length > 0) {
-        const headerRow = createHeaderRow(header);
-        table.append(headerRow);
-    }
+    table.html("");
 
-    if (data.length === 0) {
-        const tbody = document.createElement("tbody");
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.colSpan = header.length || 1;
-        td.textContent = "Нет данных";
-        tr.append(td);
-        tbody.append(tr);
-        table.append(tbody);
+    if (headers.length === 0) {
         return;
     }
 
-    const bodyRows = createBodyRows(data);
-    table.append(bodyRows);
+    table
+        .append("tr")
+        .selectAll("th")
+        .data(headers)
+        .enter()
+        .append("th")
+        .text(d => d);
+
+    if (data.length === 0) {
+        table
+            .append("tr")
+            .append("td")
+            .attr("colspan", headers.length)
+            .text("Нет данных");
+
+        return;
+    }
+
+    const rows = table
+        .selectAll("tr.data-row")
+        .data(data)
+        .enter()
+        .append("tr")
+        .attr("class", "data-row");
+
+    rows
+        .selectAll("td")
+        .data(d => Object.entries(d))
+        .enter()
+        .append("td")
+        .text(([key, value]) => formatCellValue(key, value));
 };
 
-const createHeaderRow = (headers) => {
-    const tr = document.createElement("tr");
-
-    headers.forEach(header => {
-        const th = document.createElement("th");
-        th.textContent = header;
-        tr.append(th);
-    });
-
-    return tr;
-};
-
-const createBodyRows = (data) => {
-    const tbody = document.createElement("tbody");
-
-    data.forEach(item => {
-        const tr = document.createElement("tr");
-
-        Object.entries(item).forEach(([key, value]) => {
-            const td = document.createElement("td");
-            td.textContent = formatCellValue(key, value);
-            tr.append(td);
-        });
-
-        tbody.append(tr);
-    });
-
-    return tbody;
+const createTable = (data, idTable) => {
+    showTable(idTable, data);
 };
 
 const clearTable = (idTable) => {
-    const table = document.getElementById(idTable);
-    if (table) {
-        table.innerHTML = "";
-    }
+    d3.select(`#${idTable}`).html("");
 };
